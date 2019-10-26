@@ -36,5 +36,5 @@ class CardInLessonSerializer(serializers.ModelSerializer):
             value=validated_data['value'],
             lesson=lesson
         )
-
+        card.save()
         return card

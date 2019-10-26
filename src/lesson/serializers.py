@@ -1,6 +1,7 @@
 from rest_framework import serializers
+from django.shortcuts import get_object_or_404
 
-from .models import Lesson
+from .models import Lesson, Topic
 from card.serializers import CardInLessonSerializer
 
 
@@ -19,3 +20,11 @@ class LessonInTopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
         fields = ['id', 'name', 'cards']
+
+    def create(self, validated_data):
+        topic_id = self.context.get('view').kwargs.get('topic_id')
+        topic = get_object_or_404(Topic, id=topic_id)
+        lesson = Lesson(name=validated_data['name'], topic=topic)
+        lesson.save()
+        print(lesson.id)
+        return lesson
