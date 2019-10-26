@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ReadOnlyModelViewSet
 
-# Create your views here.
+from .models import Card
+from .serializers import CardSerializer
+
+
+class CardReadOnlyViewset(ReadOnlyModelViewSet):
+    queryset = Card.objects.all()
+    serializer_class = CardSerializer
