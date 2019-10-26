@@ -11,3 +11,11 @@ class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
         fields = ['id', 'topic', 'topic_name', 'name', 'cards']
+
+
+class LessonInTopicSerializer(serializers.ModelSerializer):
+    cards = CardInLessonSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Lesson
+        fields = ['id', 'name', 'cards']
