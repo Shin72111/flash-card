@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Add django rest framework
+    'rest_framework',
+
+    'topic.apps.TopicConfig',
+    'lesson.apps.LessonConfig',
+    'card.apps.CardConfig',
 ]
 
 MIDDLEWARE = [
